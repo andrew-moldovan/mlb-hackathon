@@ -1,0 +1,19 @@
+<div class="container">
+
+  <navbar></navbar>
+
+  <div ng-if="main.loading">Loading...</div>
+
+  <h1 class="overall-title">Pitchers</h1>
+  <div ng-repeat="pitcher in main.pitchersData">
+    <div class="row">
+      <a ui-sref="individualPitcher({ pitcherId: pitcher.id })">
+        <div class="col-md-12">
+          <h1 class="name">{{pitcher.name}}</h1>
+        </div>
+
+      </a>
+    </div>
+  </div>
+
+</div>

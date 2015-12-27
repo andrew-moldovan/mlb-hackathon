@@ -1,0 +1,24 @@
+.scatter-plot {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000;
+    stroke-width: .1rem;
+    shape-rendering: crispEdges;
+  }
+
+  .dot {
+    stroke: #000;
+    cursor: pointer;
+  }
+}
+
+.tooltip {
+  background: grey;
+  padding: .5rem;
+  border-radius: .3rem;
+  color: white;
+}
