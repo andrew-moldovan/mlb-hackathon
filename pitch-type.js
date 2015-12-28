@@ -55,33 +55,58 @@ MongoClient.connect(url, function(err, db) {
                 // lastly we need to figure out if this pitch was a positive, neutral or negative result
                 if (currentPitch.pitchResult === 'SS'
                   || currentPitch.pitchResult === 'SL'
-                  || currentPitch.pitchResult === 'PO'
+                  || currentPitch.pitchResult === 'F'
+                  || currentPitch.pitchResult === 'FT'
+                  || currentPitch.pitchResult === 'FB'
+                  || currentPitch.pitchResult === 'MB'
+                  || currentPitch.pitchResult === 'AS'
                 ) {
                   playerPitches.pitchTypes[currentPitch.pitchType].positive++;
                 }
                 if (currentPitch.pitchResult === 'B'
+                  || currentPitch.pitchResult === 'BID'
                   || currentPitch.pitchResult === 'HBP'
+                  || currentPitch.pitchResult === 'AB'
+                  || currentPitch.pitchResult === 'CI'
                 ) {
                   playerPitches.pitchTypes[currentPitch.pitchType].negative++;
                 }
-                if (currentPitch.pitchResult === 'F'
-                  || currentPitch.pitchResult === 'FT'
-                  || currentPitch.pitchResult === 'FB'
+                if (currentPitch.pitchResult === 'IB'
+                  || currentPitch.pitchResult === 'PO'
                 ) {
                   playerPitches.pitchTypes[currentPitch.pitchType].neutral++;
                 }
                 // lastly if it was an IP then we need to check the paResult as well
                 if (currentPitch.pitchResult === 'IP') {
+                  if (currentPitch.paResult === 'IP_OUT'
+                    || currentPitch.paResult === 'K'
+                    || currentPitch.paResult === 'FC'
+                    || currentPitch.paResult === 'DP'
+                    || currentPitch.paResult === 'TP'
+                    || currentPitch.paResult === 'BI'
+                  ) {
+                    playerPitches.pitchTypes[currentPitch.pitchType].positive++;
+                  }
                   if (currentPitch.paResult === 'S'
                     || currentPitch.paResult === 'D'
+                    || currentPitch.paResult === 'T'
+                    || currentPitch.paResult === 'HR'
+                    || currentPitch.paResult === 'BB'
+                    || currentPitch.paResult === 'HBP'
+                    || currentPitch.paResult === 'SH'
+                    || currentPitch.paResult === 'SF'
+                    || currentPitch.paResult === 'ROE'
+                    || currentPitch.paResult === 'SH_ROE'
+                    || currentPitch.paResult === 'SF_ROE'
+                    || currentPitch.paResult === 'CI'
+                    || currentPitch.paResult === 'FI'
                   ) {
                     playerPitches.pitchTypes[currentPitch.pitchType].negative++;
                   }
-
-                  if (currentPitch.paResult === 'IP_OUT'
-                    || currentPitch.paResult === 'K'
+                  if (currentPitch.paResult === 'IBB'
+                    || currentPitch.paResult === 'NO_PLAY'
                   ) {
-                    playerPitches.pitchTypes[currentPitch.pitchType].positive++;
+                    playerPitches.pitchTypes[currentPitch.pitchType].neutral++;
                   }
                 }
               }
