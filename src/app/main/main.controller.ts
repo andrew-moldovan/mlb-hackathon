@@ -13,6 +13,12 @@ module mlbHackathon {
     public getAllData() {
       this.DataInputService.getAllData().then((result: any) => {
         console.log(result.data);
+        var str = "";
+        for (var i = 0; i < result.data.header.length; i++) {
+          str += "'" + result.data.header[i].label+ "',\n";
+          console.log(result.data.header[i].label);
+        }
+        console.log(str);
       }).catch((failure) => {
         console.log("error", failure);
       });
