@@ -59,7 +59,7 @@ var keys = [
 var MongoClient = require('mongodb').MongoClient;
 var url = 'mongodb://Andrews-MacBook-Pro.local:27017/mlb2';
 MongoClient.connect(url, function(err, db) {
-  var fileName = __dirname + '/src/assets/data/2015-WS.json';
+  var fileName = __dirname + '/src/assets/data/2013.json';
   // load in the json file
   var fs = require("fs");
   var Combo = require("stream-json/Combo");
@@ -83,12 +83,12 @@ MongoClient.connect(url, function(err, db) {
       } else if (chunk.name === 'endArray') {
         if (counter >= 1) {
           // this means that we have a whole row. Let's add it to the db
-          db.collection("pitchers_ws").update(
+          db.collection("pitchers_2013").update(
             { "_id" : current.pitcherId },
             { "name" : current.pitcher },
             { upsert: true }
           );
-          db.collection('pitches_ws').update(
+          db.collection('pitches_2013').update(
             { "_id": current.pitcherId },
             { $push: { "pitch": current } },
             { upsert: true }
