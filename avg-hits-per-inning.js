@@ -49,8 +49,22 @@ MongoClient.connect(url, function(err, db) {
             }
           }
           // once we've gone throught the for loop of all pitches let's see how many hits per inning
-          console.log(hitsPerInning);
-          console.log(timesPitchedInInning);
+          var avgHitsPerInning = {};
+          // find the avg hits per inning
+          for (times in timesPitchedInInning) {
+            if (hitsPerInning[times]) {
+              avgHitsPerInning[times] = hitsPerInning[times] / timesPitchedInInning[times];
+            } else {
+              avgHitsPerInning[times] = 0;
+            }
+          }
+          db.collection("pitchers_ws").update(
+            { "_id" : pitcher._id },
+            { $set:
+              { "avgHitsPerInning" : avgHitsPerInning }
+            }
+          );
+          console.log(avgHitsPerInning);
         }
       })
     }
