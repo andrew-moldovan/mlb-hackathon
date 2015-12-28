@@ -9,16 +9,30 @@ MongoClient.connect(url, function(err, db) {
     if (pitcher && pitcher._id) {
       // we have a pitcher Id, let's go and find all the pitches for this guy
       var pitches = db.collection('pitches_ws').find( { "_id" : pitcher._id });
-      pitches.each(function(err, pitch) {
-        if (pitch) {
+      pitches.each(function(err, allPitches) {
+        if (allPitches) {
           console.log(pitcher.name);
-          // all the pitches for a pitcher are in the pitch.pitch array
+          // all the pitches for a pitcher are in the allPitches.pitch array
           // anything in here is per pitcher
           var hitsPerInning = {};
-          for (var i = 0; i < pitch.pitch.length; i++) {
-            if (pitch.pitch[i]) {
-              var currentPitch = pitch.pitch[i];
+          var timesPitchedInInning = {};
+          var currentInning = -1;
+
+          for (var i = 0; i < allPitches.pitch.length; i++) {
+            if (allPitches.pitch[i]) {
+              var currentPitch = allPitches.pitch[i];
               var inning = currentPitch.inning;
+
+              if (currentInning !== currentPitch.inning) {
+                // this is a new game
+                if (timesPitchedInInning[inning]) {
+                  timesPitchedInInning[inning]++;
+                } else {
+                  timesPitchedInInning[inning] = 1;
+                }
+                currentInning = currentPitch.inning;
+              }
+
               if (currentPitch.pitchResult === 'IP' &&
                 (currentPitch.paResult == 'S'
                 || currentPitch.paResult == 'D'
@@ -36,6 +50,7 @@ MongoClient.connect(url, function(err, db) {
           }
           // once we've gone throught the for loop of all pitches let's see how many hits per inning
           console.log(hitsPerInning);
+          console.log(timesPitchedInInning);
         }
       })
     }
