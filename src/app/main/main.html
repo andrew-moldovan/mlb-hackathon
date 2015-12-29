@@ -10,7 +10,7 @@
 
   <h1 class="overall-title">Pitchers</h1>
 
-  <div ng-repeat="pitcher in main.pitchersData | limitTo: main.toShow">
+  <div ng-repeat="pitcher in main.pitchersData | orderBy: 'name' | limitTo: main.toShow">
     <div class="row">
       <a ui-sref="individualPitcher({ pitcherId: pitcher._id })">
         <div class="col-md-12">
@@ -19,5 +19,5 @@
       </a>
     </div>
   </div>
-  <button ng-click="main.showMore()" class="btn btn-primary">Show More</button>
+  <button ng-click="main.showMore()" class="btn btn-primary" style="margin-bottom:2rem">Show More</button>
 </div>
