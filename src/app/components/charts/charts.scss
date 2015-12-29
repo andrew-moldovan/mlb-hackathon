@@ -20,5 +20,16 @@
 }
 
 .pitch-types {
+  .pitch-results {
+    border-bottom: 2px solid white;
+    margin-bottom: 2px;
+    font-weight: 900;
+  }
+}
 
+.tooltip {
+  background: grey;
+  padding: .5rem;
+  border-radius: .3rem;
+  color: white;
 }

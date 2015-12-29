@@ -66,6 +66,13 @@ module mlbHackathon {
               .attr("offset", "50%")
               .style("stop-color", "rgb(122,158,110)");
 
+          var tooltip = d3.select(ele[0]).append("div")
+            .style("position", "absolute")
+            .style("right", 0)
+            .style("bottom", '10px')
+            .attr("opacity", 0)
+            .attr("class", "tooltip");
+
           var largestRadius = d3.max(data, function(d) { return d.radius; });
           var xLine = 10;
           var xLine2 = 10;
@@ -108,8 +115,22 @@ module mlbHackathon {
               return d.radius;
             })
             .style("fill", function(d, i) {
-              console.log(d, i);
               return "url(#grad" + i + ")";
+            })
+            .on("mouseover", function(d) {
+              var pitchResultsString = '';
+              for (var pr in d.value.pitchResults) {
+                pitchResultsString += pr + ': ' + d.value.pitchResults[pr] + "<br/>";
+              }
+              tooltip.html("<b>Pitch Type: </b>"+d.pitchType+"<br/><b>Total Pitches: </b>" + d.value.totalPitches
+                + "<br/><b>Positives: </b>" + d.value.positive
+                + "<br/><b>Negatives: </b>" + d.value.negative
+                + "<br/><b>Neutrals: </b>" + d.value.neutral
+                + "<br/><span class='pitch-results'>Pitch Result Counts</span><br/>" + pitchResultsString)
+                .style("opacity", .9);
+            })
+            .on("mouseout", function(d) {
+              tooltip.style("opacity", 0);
             });
 
             svg.selectAll("text")
