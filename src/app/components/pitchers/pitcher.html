@@ -7,7 +7,12 @@
       <p>
         The chart below shows the distribution of a pitchers pitch types, their effectiveness and usage.
       </p>
-      <pitch-types ng-if="!pitcher.loading" data="pitcher.pitcher.playerPitches" height="400" margin="pitcher.margin" title="'Pitch Types'" class="pitch-types"></pitch-types>
+      <p>
+        The green color represents the % of positive pitches over the entire set of pitches for that pitch type.
+        Positive pitches are defined in the code, and are basically looking at what the pitch outcome was. There
+        could be many better ways of defining positive, negative and neutral.
+      </p>
+      <pitch-types ng-if="!pitcher.loading" data="pitcher.pitcher.playerPitches" height="400" margin="pitcher.margin" title="'Pitch Types (Green represents % of positive outcomes)'" class="pitch-types"></pitch-types>
     </div>
   </div>
 
