@@ -2,7 +2,7 @@ var MongoClient = require('mongodb').MongoClient;
 var url = 'mongodb://Andrews-MacBook-Pro.local:27017/mlb2';
 MongoClient.connect(url, function(err, db) {
   // find all pitchers
-  var pitchers = db.collection('pitchers_ws').find( );
+  var pitchers = db.collection('pitchers_2013').find( );
 
   pitchers.each(function(err, pitcher) {
 
@@ -11,7 +11,7 @@ MongoClient.connect(url, function(err, db) {
       if (id === id) {
         // then we know it's a number so no weird stuff happened
         // we have a pitcher Id, let's go and find all the pitches for this guy
-        var pitches = db.collection('pitches_ws').find( { "_id" : pitcher._id });
+        var pitches = db.collection('pitches_2013').find( { "_id" : pitcher._id });
         pitches.each(function(err, allPitches) {
           if (allPitches) {
             console.log(pitcher.name);
@@ -117,6 +117,14 @@ MongoClient.connect(url, function(err, db) {
               console.log(key);
               console.log(playerPitches.pitchTypes[key]);
             }
+            db.collection("pitchers_2013").update(
+              { "_id" : pitcher._id },
+              { $set:
+                {
+                  "playerPitches": playerPitches
+                }
+              }
+            );
           }
         })
       }

@@ -6,10 +6,10 @@
     },
     "files": [
         "src/app/main/main.controller.ts",
-        "src/app/components/charts/scatter-plot.directive.ts",
+        "src/app/components/charts/bar-chart.directive.ts",
+        "src/app/components/charts/pitch-types.directive.ts",
         "src/app/components/d3/d3.service.ts",
         "src/app/components/d3/d3Helper.service.ts",
-        "src/app/components/d3/d3ScatterPlotChartHelper.service.ts",
         "src/app/components/navbar/navbar.directive.ts",
         "src/app/components/pitchers/pitcher.controller.ts",
         "src/app/components/pitchers/data-input.service.ts",

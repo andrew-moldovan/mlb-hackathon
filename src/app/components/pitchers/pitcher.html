@@ -2,4 +2,21 @@
 
   <navbar></navbar>
 
+  <div class="row">
+    <div class="col-md-12">
+      <p>
+        The chart below shows the distribution of a pitchers pitch types, their effectiveness and usage.
+      </p>
+      <pitch-types ng-if="!pitcher.loading" data="pitcher.pitcher.playerPitches" height="400" margin="pitcher.margin" title="'Pitch Types'" class="pitch-types"></pitch-types>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <p>
+        The bar chart below shows the average number of hits that a pitcher has against him per inning. It's interesting to see whether some pitchers give up all their hits at the end of the game, or at the beginning or if it's more evenly spread out.
+      </p>
+      <bar-chart ng-if="!pitcher.loading" data="pitcher.avgHitsPerInning" height="300" margin="pitcher.margin" title="'Average # of Hits Per Inning'" class="bar-chart"></bar-chart>
+    </div>
+  </div>
 </div>

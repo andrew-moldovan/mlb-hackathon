@@ -10,6 +10,8 @@
 /// <reference path="../app/components/d3/d3Helper.service.ts" />
 /// <reference path="../app/components/pitchers/pitcher.controller.ts" />
 /// <reference path="../app/components/pitchers/data-input.service.ts" />
+/// <reference path="../app/components/charts/bar-chart.directive.ts" />
+/// <reference path="../app/components/charts/pitch-types.directive.ts" />
 
 module mlbHackathon {
   'use strict';
@@ -19,9 +21,10 @@ module mlbHackathon {
       .config(RouterConfig)
       .run(RunBlock)
       .service('d3HelperService', d3HelperService)
-      .service('d3ScatterPlotChartHelperService', d3ScatterPlotChartHelperService)
       .service('DataInputService', DataInputService)
       .controller('MainController', MainController)
       .controller('PitcherController', PitcherController)
-      .directive('navbar', navbar);
+      .directive('navbar', navbar)
+      .directive('barChart', barChart)
+      .directive('pitchTypes', pitchTypes);
 }

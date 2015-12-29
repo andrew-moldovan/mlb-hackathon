@@ -4,14 +4,20 @@
 
   <div ng-if="main.loading">Loading...</div>
 
+  <p>
+    This is only using the 2013 data-set as I ran out of time to put it all together.
+  </p>
+
   <h1 class="overall-title">Pitchers</h1>
-  <div ng-repeat="pitcher in main.pitchersData">
+
+  <div ng-repeat="pitcher in main.pitchersData | limitTo: main.toShow">
     <div class="row">
-      <a ui-sref="individualPitcher({ pitcherId: pitcher.id })">
+      <a ui-sref="individualPitcher({ pitcherId: pitcher._id })">
         <div class="col-md-12">
           <h1 class="name">{{pitcher.name}}</h1>
         </div>
       </a>
     </div>
   </div>
+  <button ng-click="main.showMore()" class="btn btn-primary">Show More</button>
 </div>
