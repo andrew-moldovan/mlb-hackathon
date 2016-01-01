@@ -3,12 +3,22 @@
   <navbar></navbar>
 
   <div ng-if="main.loading">Loading...</div>
+  <div class="row">
+    <div class="col-md-12">
+      <p>
+        The process I used for the hackathon was to first read in all the data using stream-json which allowed me to work with the massive datasets using nodejs. I was able to push all the data into a mongodb database which allowed me to analyze the data more quickly. Then I created 2 javascript files to analyze the data into the formats I wanted: pitch-type.js and avg-hits-per-inning.js. Both of these read in all the pitches for a certain pitcher and do some sort of analysis. The resulting data is then written back to the pitchers document in mongodb. Due to time constraints, only pitcher data from 2013 is currently used.
+      </p>
+      <p>
+        Once all the pitchers had their necessary data associated with them, I exported the mongo collection to a json file (pitchers2013.json) which has everything I need to create the visualizations. The visualizations are created using d3.js.
+      </p>
+      <p>
+        The web application is built using Angular, Sass, and Typescript (a superset of Javascript). The build
+        process uses gulp, npm and bower. Hosting is done using Firebase.
+      </p>
+    </div>
+  </div>
 
-  <p>
-    This is only using the 2013 data-set as I ran out of time to put it all together.
-  </p>
-
-  <h1 class="overall-title">Pitchers</h1>
+  <h1 class="overall-title">All Pitchers <small>In alphabetical order</small></h1>
 
   <div ng-repeat="pitcher in main.pitchersData | orderBy: 'name' | limitTo: main.toShow">
     <div class="row">

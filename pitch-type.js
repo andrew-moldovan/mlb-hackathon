@@ -1,3 +1,51 @@
+/*
+NOTE: Classification of positive/negative/neutral pitch results -- as a non-analyst this is just a first pass
+---------
+POSITIVE:
+---------
+SS
+SL
+F
+FT
+FB
+MB
+AS
+IP_OUT
+K
+FC
+DP
+TP
+BI
+---------
+NEGATIVE:
+---------
+B
+BID
+HBP
+AB
+CI
+S
+D
+T
+HR
+BB
+HBP
+SH
+SF
+ROE
+SH_ROE
+SF_ROE
+CI
+FI
+---------
+NEUTRAL
+---------
+IB
+PO
+IBB
+NO_PLAY
+*/
+
 var MongoClient = require('mongodb').MongoClient;
 var url = 'mongodb://Andrews-MacBook-Pro.local:27017/mlb2';
 MongoClient.connect(url, function(err, db) {

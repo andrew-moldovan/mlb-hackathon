@@ -4,13 +4,16 @@
 
   <div class="row">
     <div class="col-md-12">
+      <h2>Types of Pitches</h2>
       <p>
-        The chart below shows the distribution of a pitchers pitch types, their effectiveness and usage.
+        The chart below shows the distribution of a pitcher's pitch types, their effectiveness and usage.
       </p>
       <p>
-        The green color represents the % of positive pitches over the entire set of pitches for that pitch type.
-        Positive pitches are defined in the code, and are basically looking at what the pitch outcome was. There
-        could be many better ways of defining positive, negative and neutral.
+        The green color represents the % of positive pitches over all pitches for that pitch type. To determine
+        what a positive/negative/neutral pitch was we look at the pitchResult and in the case where a pitchResult
+        is an IP (In Play) then we check the paResult. The code that does this analysis and the classification
+        of pitch results can be found in <a target="_blank" href="https://github.com/andrew-moldovan/mlb-hackathon/blob/master/pitch-type.js">
+        pitch-type.js.</a>
       </p>
       <pitch-types ng-if="!pitcher.loading" data="pitcher.pitcher.playerPitches" height="400" margin="pitcher.margin" title="'Pitch Types (Green represents % of positive outcomes)'" class="pitch-types"></pitch-types>
     </div>
@@ -18,8 +21,15 @@
 
   <div class="row">
     <div class="col-md-12">
+      <h2>Average hits per inning</h2>
       <p>
-        The bar chart below shows the average number of hits that a pitcher has against him per inning. It's interesting to see whether some pitchers give up all their hits at the end of the game, or at the beginning or if it's more evenly spread out.
+        The bar chart below shows the average number of hits that a pitcher has against him per inning. It's an
+        average because we divide the total number of hits in a single inning over the number of times the pitcher
+        pitched in that inning.
+      </p>
+      <p>
+        It's interesting to see whether some pitchers give up all their hits at the end of the game, or at
+        the beginning or if it's more evenly spread out.
       </p>
       <bar-chart ng-if="!pitcher.loading" data="pitcher.avgHitsPerInning" height="300" margin="pitcher.margin" title="'Average # of Hits Per Inning'" class="bar-chart"></bar-chart>
     </div>
